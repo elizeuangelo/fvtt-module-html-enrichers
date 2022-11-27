@@ -1,8 +1,8 @@
 {
 	"id": "light-enricher",
-	"title": "Light Enricher",
-	"description": "Introducing Dungeon Mode! A turn by turn way of exploring, looting and moving through dungeons. Inspired by a high-speed ranger named Faendal…",
-	"version": "1.0",
+	"title": "Lights, Camera, Action!",
+	"description": "Creates some new links to use in Journal or chat, with new funcionalities.",
+	"version": "1.01",
 	"authors": [
 		{
 			"name": "Elizeu Angelo",
