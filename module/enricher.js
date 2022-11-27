@@ -27,7 +27,40 @@ const lightEnricher = createEnricher(/@Light\[([^#\]]+)](?:{([^}]+)})?/g, functi
 	};
 
 	const a = document.createElement('a');
-	a.classList.add('light-link');
+	a.classList.add('light-link', 'custom-link');
+	a.draggable = true;
+
+	for (let [k, v] of Object.entries(dataset)) {
+		a.dataset[k] = v;
+	}
+
+	a.innerHTML = `<i class="${icon}"></i>${name}`;
+
+	return a;
+});
+
+export const sceneIcon = {
+	normal: 'fa-location-dot',
+	broken: 'fa-location-dot-slash',
+};
+
+const activateSceneEnricher = createEnricher(/@Activate\[([^#\]]+)](?:{([^}]+)})?/g, function (match, { relativeTo, secrets, async }) {
+	const id = match[1],
+		name = match[2];
+
+	const scene = game.scenes.get(id);
+	const broken = !Boolean(scene);
+	const icon = 'fa-regular ' + (broken ? sceneIcon.broken : sceneIcon.normal);
+
+	const dataset = {
+		id,
+		tooltip: 'Activate Scene',
+		name,
+		broken,
+	};
+
+	const a = document.createElement('a');
+	a.classList.add('scene-link', 'custom-link');
 	a.draggable = true;
 
 	for (let [k, v] of Object.entries(dataset)) {
@@ -41,4 +74,9 @@ const lightEnricher = createEnricher(/@Light\[([^#\]]+)](?:{([^}]+)})?/g, functi
 
 Hooks.once('ready', () => {
 	CONFIG.TextEditor.enrichers.push(lightEnricher);
+	CONFIG.TextEditor.enrichers.push(activateSceneEnricher);
+
+	const a = document.createElement('a');
+	a.classList.add('light-link', 'custom-link');
+	a.draggable = true;
 });

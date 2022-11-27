@@ -1,6 +1,6 @@
-# Foundry VTT - Light Enricher
+# Foundry VTT - Lights, Camera, Action!
 
-Creates a new link to turn lights on/off in Journals.
+Creates some new links to use in Journal or chat, with new funcionalities.
 
 ## Installation
 
@@ -8,9 +8,17 @@ In the setup screen, use the manifest URL https://raw.githubusercontent.com/eliz
 
 ## How to Use
 
+#### Light Switch
+
 Use the syntax `@Light[ID1,ID2...]{Name}` inside a journal and it will automatically create the link.
 
 Also, by clicking the **Link** header button in the ambient lights configuration, the syntax will be automatically copied to the clipboard.
+
+#### Scene Activation
+
+Use the syntax `@Activate[ID1]{Name}` inside a journal and it will automatically create the link.
+
+Also, by clicking the button in the the context-menu, the syntax will be automatically copied to the clipboard.
 
 ## License
 

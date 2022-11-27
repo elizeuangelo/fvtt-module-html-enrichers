@@ -1,5 +1,5 @@
-export function createLink(ids, name) {
-	return `@Light[${ids}]{${name}}`;
+export function createLink(ids, name, type) {
+	return `@${type}[${ids}]{${name}}`;
 }
 
 Hooks.on('getAmbientLightConfigHeaderButtons', (config, buttons) => {
@@ -8,7 +8,7 @@ Hooks.on('getAmbientLightConfigHeaderButtons', (config, buttons) => {
 		class: 'journal-link',
 		icon: 'fas fa-book-open',
 		onclick: () => {
-			const link = createLink(config.object.id, 'Ambient Light');
+			const link = createLink(config.object.id, 'Ambient Light', 'Light');
 			navigator.clipboard.writeText(link);
 			ui.notifications.notify(`Journal link of Ambient Light ${config.object.id} copied to clipboard.`);
 		},
