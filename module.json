@@ -1,0 +1,20 @@
+{
+	"id": "light-enricher",
+	"title": "Light Enricher",
+	"description": "Introducing Dungeon Mode! A turn by turn way of exploring, looting and moving through dungeons. Inspired by a high-speed ranger named Faendal…",
+	"version": "1.0",
+	"authors": [
+		{
+			"name": "Elizeu Angelo",
+			"discord": "Magus#9576"
+		}
+	],
+	"esmodules": ["./main.js"],
+	"styles": ["./style.css"],
+	"compatibility": {
+		"minimum": 10,
+		"verified": "10.290"
+	},
+	"manifest": "https://github.com/elizeuangelo/fvtt-module-light-enricher/releases/latest/download/module.json",
+	"download": "https://github.com/elizeuangelo/fvtt-module-light-enricher/releases/latest/download/light-enricher.zip"
+}
