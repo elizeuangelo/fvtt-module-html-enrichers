@@ -4,7 +4,7 @@ Creates some new links to use in Journal or chat, with new funcionalities.
 
 ## Installation
 
-In the setup screen, use the manifest URL https://raw.githubusercontent.com/elizeuangelo/fvtt-module-light-enricher/master/module.json to install the module.
+In the setup screen, use the manifest URL https://raw.githubusercontent.com/elizeuangelo/fvtt-module-lights-camera-action/master/module.json to install the module.
 
 ## How to Use
 
