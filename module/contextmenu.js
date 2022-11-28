@@ -7,7 +7,7 @@ Hooks.on('getSceneDirectoryEntryContext', (html, entryOptions) => {
 		icon: `<i class="fa-regular ${sceneIcon.normal}"></i>`,
 		callback: (li) => {
 			const scene = game.scenes.get(li[0].dataset.documentId);
-			const link = createLink(scene.id, 'Scene', 'Activate');
+			const link = createLink(scene.id, scene.name, 'Activate');
 			navigator.clipboard.writeText(link);
 			ui.notifications.notify(`Link to activate scene ${scene.id} copied to clipboard.`);
 		},
