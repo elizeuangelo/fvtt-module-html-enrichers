@@ -26,8 +26,12 @@ Hooks.on('getActorSheetHeaderButtons', (config, buttons) => {
 			onclick: async (event, test) => {
 				event.preventDefault();
 				//await this.submit();
-				const id = /Actor-(.+)/.exec(event.target.parentElement.parentElement.id)?.[1];
-				const actor = game.actors.get(id);
+				const match = /(Actor|Token)-(.+)/.exec(event.target.parentElement.parentElement.id);
+				let actor;
+				if (match[1] === 'Token') {
+					const token = canvas.tokens.documentCollection.get(match[2]);
+					actor = token.actor;
+				} else actor = game.actors.get(match[2]);
 				if (actor) return showDialog(actor);
 			},
 		});
