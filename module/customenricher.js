@@ -64,11 +64,11 @@ export class CustomEnricher {
 			ids,
 			tooltip: this.tooltip,
 			name,
-			broken,
 		};
 
 		const a = document.createElement('a');
 		a.classList.add(`${this.name}-link`, 'custom-link');
+		if (broken) a.classList.add('broken');
 		a.draggable = true;
 
 		for (let [k, v] of Object.entries(dataset)) {
@@ -97,7 +97,7 @@ document.addEventListener('dragstart', (ev) => {
 document.addEventListener('click', async (pointerEvent) => {
 	for (let i = 0; i < 2; i++) {
 		const el = pointerEvent.path[i];
-		if (el && el.localName === 'a' && el.dataset.broken !== 'true' && el.classList.contains('custom-link')) {
+		if (el && el.localName === 'a' && el.classList.contains('custom-link') && !el.classList.contains('broken')) {
 			const match = /([a-z-]+)-link/.exec(el.className);
 			if (!match) break;
 			const enricher = CustomEnricher.enrichers[match[1]];
