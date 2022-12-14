@@ -29,7 +29,7 @@ jobs:
                   version: ${{ steps.get_version.outputs.VERSION_NUMBER }}
 
             - name: Zip files
-              run: zip -r lights-camera-action * -x ".github/*" "README.md"
+              run: zip -r lights-camera-action * -x ".github/*" "README.md" "*.ts"
 
             # Create a release for this specific version
             - name: Create Release

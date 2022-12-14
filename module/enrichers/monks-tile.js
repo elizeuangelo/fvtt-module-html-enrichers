@@ -5,6 +5,15 @@ const tileIcon = {
 	broken: 'fa-star-half',
 };
 
+const mergedTiles = {
+	get(id) {
+		for (let scene of game.scenes.values()) {
+			const tile = scene.tiles.get(id);
+			if (tile) return tile;
+		}
+	},
+};
+
 Hooks.once('ready', () => {
 	if (!game.modules.get('monks-active-tiles')) return;
 
@@ -23,7 +32,7 @@ Hooks.once('ready', () => {
 				},
 			},
 		},
-		collection: canvas.tiles.documentCollection,
+		collection: mergedTiles,
 		linkicon: (tile) => {
 			if (!tile) return tileIcon.broken;
 			return tileIcon.normal;

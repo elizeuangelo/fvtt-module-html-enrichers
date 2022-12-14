@@ -6,6 +6,15 @@ const lightIcon = {
 	broken: 'fa-lightbulb-slash',
 };
 
+const mergedLights = {
+	get(id) {
+		for (let scene of game.scenes.values()) {
+			const light = scene.lights.get(id);
+			if (light) return light;
+		}
+	},
+};
+
 Hooks.once('ready', () => {
 	new CustomEnricher({
 		name: 'light',
@@ -23,7 +32,7 @@ Hooks.once('ready', () => {
 				},
 			},
 		},
-		collection: canvas.lighting.documentCollection,
+		collection: mergedLights,
 		linkicon: (light) => {
 			if (!light) return lightIcon.broken;
 			if (light.hidden) return lightIcon.off;
