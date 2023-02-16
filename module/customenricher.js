@@ -82,22 +82,26 @@ export class CustomEnricher {
 }
 
 document.addEventListener('dragstart', (ev) => {
+	let el = ev.target;
 	for (let i = 0; i < 2; i++) {
-		const el = ev.path[i];
-		if (el && el.localName === 'a' && el.classList.contains('custom-link')) {
+		if (!el) break;
+		if (el.localName === 'a' && el.classList.contains('custom-link')) {
 			const match = /([a-z-]+)-link/.exec(el.className);
 			if (!match) break;
 			const enricher = CustomEnricher.enrichers[match[1]];
 			const link = enricher.createLink(el.dataset.ids, el.dataset.name);
 			ev.dataTransfer?.setData('text/plain', link);
+			return;
 		}
+		el = el.parentElement;
 	}
 });
 
 document.addEventListener('click', async (pointerEvent) => {
+	let el = pointerEvent.target;
 	for (let i = 0; i < 2; i++) {
-		const el = pointerEvent.path[i];
-		if (el && el.localName === 'a' && el.classList.contains('custom-link') && !el.classList.contains('broken')) {
+		if (!el) break;
+		if (el.localName === 'a' && el.classList.contains('custom-link') && !el.classList.contains('broken')) {
 			const match = /([a-z-]+)-link/.exec(el.className);
 			if (!match) break;
 			const enricher = CustomEnricher.enrichers[match[1]];
@@ -106,6 +110,8 @@ document.addEventListener('click', async (pointerEvent) => {
 				ids.map((id) => enricher.collection.get(id)),
 				el
 			);
+			return;
 		}
+		el = el.parentElement;
 	}
 });
